@@ -29,6 +29,7 @@ task :new_post, :title do |t, args|
 end
 
 task :download_json do |t, args|
-  `curl "https://ieee.hackerrank.com/rest/contests/ieeextreme7/leaderboard/filter?offset=0&limit=10000" > tmp/list.json`
+  `curl "https://ieee.hackerrank.com/rest/contests/ieeextreme7/leaderboard/filter?offset=1&limit=1000000" > tmp/list
+.json`
 end
 
