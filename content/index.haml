@@ -5,10 +5,10 @@
 .row
   .large-12.columns
     %p Hello
-    %table
+    %table{width: '100%'}
       %thead
         %tr
-          %th Global Rank
+          %th{width: '200px'} Global Rank
           %th Name
       %tbody
         - get_ucsb_hackers.each do |hacker|
