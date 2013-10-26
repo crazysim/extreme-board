@@ -1,9 +1,13 @@
+%script{src:'assets/javascripts/countdown.js'}
 .row
   .large-12.columns
     %h1 UCSB IEEExtreme Team Global Ranking
   .large-6.columns
     %p Teams with successful submissions or a score above zero will rank.
     %p Last server download and check: #{DateTime.now}
+    :javascript
+      var myCountdown2 = new Countdown({year:2013, month:10, day:26, hour:5, ampm:"pm" , width:400, height:80,
+      rangeHi:"hour"});
   .large-6.columns
     %table{width: '100%'}
       %thead
