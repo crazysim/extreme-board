@@ -30,8 +30,8 @@ task :new_post, :title do |t, args|
 end
 
 task :download_json do |t, args|
-  random = SecureRandom.hex
-  url = "https://ieee.hackerrank.com/rest/contests/ieeextreme7/leaderboard/filter?offset=0&limit=1000000000000000000&uuid=#{random}"
+  limit = Random.new.rand(10000000...1000000000000000000)
+  url = "https://ieee.hackerrank.com/rest/contests/ieeextreme7/leaderboard/filter?offset=0&limit=#{limit}"
   puts "Downloading #{url}"
 `curl "#{url}" > tmp/list.json`
 end
