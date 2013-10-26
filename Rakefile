@@ -1,6 +1,7 @@
 require 'nanoc/tasks'
 require 'stringex'
 require 'rubygems'
+require 'securerandom'
 
 desc 'Create a new post'
 task :new_post, :title do |t, args|
@@ -29,6 +30,9 @@ task :new_post, :title do |t, args|
 end
 
 task :download_json do |t, args|
-`curl "https://ieee.hackerrank.com/rest/contests/ieeextreme7/leaderboard/filter?offset=0&limit=1000000000000000000" > tmp/list.json`
+  random = SecureRandom.hex
+  url = "https://ieee.hackerrank.com/rest/contests/ieeextreme7/leaderboard/filter?offset=0&limit=1000000000000000000&uuid=#{random}"
+  puts "Downloading #{url}"
+`curl "#{url}" > tmp/list.json`
 end
 

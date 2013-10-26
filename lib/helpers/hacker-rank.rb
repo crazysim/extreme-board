@@ -17,6 +17,7 @@ def get_ucsb_hackers
     KMP
     ItOnlyTakesOneToWin
     HKware
+    ITTtech
   }
   json_string = File.read('tmp/list.json')
   json = JSON.parse(json_string)
