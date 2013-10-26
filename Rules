@@ -14,17 +14,7 @@
 #   because “*” matches zero or more characters.
 
 preprocess do
-  # If it's under blog and posts, it is probably an article unless set otherwise.
-  items.select {|item| /^\/blog\/posts/.match(item.identifier) }.map do |item|
-    item.attributes[:kind] ||= 'article'
-  end
 
-  # Parse date out of identifier and created_at_time attribute for articles and set it to created_at
-  items.select {|item| item.attributes[:kind] == 'article'}.map do |post|
-    year, month, day = /(\d{4})-(\d{1,2})-(\d{1,2})/.match(post.identifier).captures
-    post.attributes[:created_at] ||= Time.parse([[year, month, day].join('-'),
-                                               post.attributes[:created_at_time]].join(' '))
-  end
 end
 
 # Styling and Javascript Asset Rules
@@ -53,45 +43,6 @@ route '/assets/javascripts/*' do
   item.identifier.chop + '.js'
 end
 
-# Blog Rules
-compile '/blog/posts/*' do
-  filter :erb
-  # This is a workaround for not being able to customize how a language is detected with nanoc's
-  # colorize_syntax filter with code fences
-  filter :markdown_code_fence_colorize_adapter
-  filter :redcarpet, :options => {fenced_code_blocks: true,
-                                  autolink: true},
-                    :renderer_options => {hard_wrap: false}
-  filter :colorize_syntax, :default_colorizer => :pygmentsrb
-  layout 'post'
-end
-
-route '/blog/posts/*' do
-  created_at = item.attributes[:created_at]
-  year, month, day = created_at.year, created_at.month, created_at.day
-  slug = /\d{1,2}-\d{1,2}\/(.+)\/$/.match(item.identifier).captures[0]
-  "/blog/posts/#{year}/#{month}/#{day}/#{slug}/index.html"
-end
-
-## Atom
-compile '/blog/atom/' do
-  filter :haml
-  # No layout
-end
-
-route '/blog/atom/' do
-  '/blog/atom.xml'
-end
-
-## Sitemap
-compile '/sitemap/' do
-  filter :haml
-  # No layout
-end
-
-route '/sitemap/' do
-  '/sitemap.xml'
-end
 
 # Misc Rules
 compile '*' do
