@@ -22,6 +22,6 @@ def get_ucsb_hackers
   json = JSON.parse(json_string)
   teams = json['models']
   teams.select{ |team|
-    ucsb_team_names.any? { |s| s.casecmp(team['hacker'])==0 }
+    ucsb_team_names.include?(team['hacker'])
   }
 end
