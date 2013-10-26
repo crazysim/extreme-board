@@ -1,5 +1,7 @@
+#!/bin/bash
+
 while true
-do 
-  ./crontab.update.sh
+do
+  ./crontab/update.sh
   sleep 30
 done
