@@ -1,3 +1,5 @@
 #!/bin/sh
 cd ~/extreme-board
-git pull && rake download_json && nanoc co
+git pull
+rake download_json
+nanoc co
