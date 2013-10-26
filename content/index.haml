@@ -6,13 +6,16 @@
     %table{width: '100%'}
       %thead
         %tr
-          %th{width: '200px'} Global Rank
+          %th{width: '70px'} Global Rank
+          %th{width: '70px'} Score
           %th Name
       %tbody
         - get_ucsb_hackers.each do |hacker|
           %tr
             %td
               = hacker['rank']
+            %td
+              = hacker['scorec']
             %td
               = hacker['hacker']
     %script{src:'assets/javascripts/refresh.js'}
