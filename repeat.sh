@@ -1,5 +1,5 @@
 while true
 do 
   ./crontab.update.sh
-  sleep 1
+  sleep 30
 done
