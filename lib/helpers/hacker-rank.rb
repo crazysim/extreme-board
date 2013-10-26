@@ -1,4 +1,5 @@
 require 'json'
+require 'date'
 
 def get_ucsb_hackers
   ucsb_team_names =%w{
